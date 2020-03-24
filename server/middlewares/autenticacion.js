@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 // ====================
 let verificaToken = (req, res, next) => {
     let token = req.get('token');
+    let test = process.env.SEED;
 
     jwt.verify(token, process.env.SEED, (err, decoded) => {
         if(err){
@@ -12,7 +13,8 @@ let verificaToken = (req, res, next) => {
                 ok: false,
                 err: {
                     message: 'Token no válido',
-                    token
+                    token,
+                    test
                 }
             });
         }
